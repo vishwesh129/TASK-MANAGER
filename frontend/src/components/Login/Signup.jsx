@@ -7,7 +7,9 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
+    const changePage = ()=>{
+        navigate("/login");
+    }
     const navigate = useNavigate();
 
     const handleSignup = (event) => {
@@ -50,9 +52,9 @@ const Signup = () => {
                         </FormControl>
                         <Text mt={"5px"}>
                             Already on Retax? &nbsp;
-                            <Link color="teal.500">
+                            <Button color="teal.500" onClick={changePage}>
                                 LOG IN
-                            </Link>
+                            </Button>
                         </Text>
                     </Box>
                 </Center>

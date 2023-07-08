@@ -5,43 +5,47 @@ const todoRouter = express.Router();
 
 todoRouter.get("/", async (req, res) => {
     try {
-        const todos = await Todomodel.find();
+        console.log("req is" , req.body);
+        const todos = await Todomodel.find({ownID : req.body.userID});
         res.status(200).send(todos)
     }
     catch (err) {
         console.log(err);
-        res.status(404).send("Error")
+        res.status(404).send({"msg" : "Please Login Bro"})
     }
 
 })
 
 todoRouter.post("/create", async (req, res) => {
-    const { taskname, status, tag } = req.body;
-    const ownID = req.userID
+    const { desc, status, date } = req.body;
+    const ownID = req.body.userID
 
     const new_todo = new Todomodel({
-        taskname,
+        desc,
         status,
-        tag,
+        date,
         ownID
     })
     await new_todo.save();
-    res.status(200).send({"message" : "Todo created successfully"})
+    res.status(200).send({"message" : "Todo created successfully" , new_todo})
 })
 
 todoRouter.delete("/delete/:todoID" , async(req, res) => {
     const {todoID} = req.params;
-    const userID = req.userID;     // current user
+    const userID = req.body.userID;     // current user
     
     const todo = await Todomodel.findOne({_id :todoID})
     const ownID = todo.ownID;
 
+    console.log(ownID);
+    console.log(userID);
+
     if(ownID === userID){
         await Todomodel.findOneAndDelete({_id :todoID})
-        res.status(200).send("Todo deleted successfully")
+        res.status(200).send({"msg" : "Todo deleted successfully"})
     }
     else{
-        res.status(404).send("You are not allowed to delete this task")
+        res.status(404).send({"msg" : "You are not allowed to delete this task"})
     }
 })
 

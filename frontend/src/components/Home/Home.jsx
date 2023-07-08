@@ -1,9 +1,7 @@
 import { Button, Center, Heading } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import Sidebar from '../../Pages/Sidebar';
+import { Link } from 'react-router-dom';
 import AllRoutes from '../../AllRoutes';
-import Sidebar from '../../Pages/Sidebar';
 
 const Home = () => {
     const [start, setStart] = useState(false);
@@ -11,7 +9,6 @@ const Home = () => {
     const handleStart = () => {
         setStart(true);
     }
-
     return (
         <div>
             {
@@ -20,7 +17,7 @@ const Home = () => {
                         <Center>
                             <Heading mt={"10%"} color={'blue.900'}> Welcome to Vishwesh's Task Manager Application</Heading>
                         </Center>
-                        <Link to={"/sidebar"}>
+                        <Link to={"/tasks"}>
                             <Button size='lg' colorScheme='green' mt='50px' onClick={handleStart}>Get Started</Button>
                         </Link>
                     </div>

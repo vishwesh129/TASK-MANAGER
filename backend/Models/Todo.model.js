@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const todoSchema = mongoose.Schema({
-    taskname : {type : String , required : true},
-    status  : {type : String , enum : ["pending", "done"], required : true},
-    tag : {type : String , enum : ["personal", "official", "family"], required : true},
+    desc : {type : String , required : true},
+    status  : {type : String , enum : ["pending", "completed"], required : true},
+    date : {type : Date, default:Date.now},
     ownID : String
 })
 const Todomodel = mongoose.model("todo" , todoSchema);

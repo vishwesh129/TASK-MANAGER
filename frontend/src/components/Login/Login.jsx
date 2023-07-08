@@ -7,6 +7,9 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const changePage = ()=>{
+        navigate("/signup");
+    }
 
     const navigate = useNavigate();
 
@@ -23,12 +26,16 @@ const Login = () => {
             .then(data => {
                 console.log(data);
                 if (data.token) {
-                    localStorage.setItem("token", data.token)
+                    localStorage.setItem("token", data.token);
+                    alert("Login Successful");
+                    navigate("/tasks");
+                } else {
+                    alert("Wrong password. Please try again.");
                 }
-                alert("Login Successful")
-                navigate("/dashboard");
             })
-            .catch((err) => console.log(err))
+            .catch((err) => 
+            console.log(err)
+            )
     }
     return (
         <div>
@@ -47,10 +54,10 @@ const Login = () => {
                             <Button colorScheme='yellow' borderRadius={"25px"} size='md' mt={"20px"} onClick={handleLogin}>LOGIN</Button>
                         </FormControl>
                         <Text mt={"5px"}>
-                            Already on Retax? &nbsp;
-                            <Link color="teal.500">
-                                LOG IN
-                            </Link>
+                            New to here? &nbsp;
+                            <Button color="teal.500" onClick={changePage}>
+                                SIGN UP
+                            </Button>
                         </Text>
                     </Box>
                 </Center>

@@ -7,14 +7,19 @@ const authenticate = (req, res, next) => {
         return res.send("Please Login");
     }
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
-        const {userID} = decoded
-        req.userID = userID
-        if(decoded){
-            next();
+        if(err){
+            res.json({msg : "Something went wrong"})
         }
         else{
-            res.send("Please Login");
+            req.body.userID = decoded.userID;
+            next();
         }
+
+        // const { userID } = decoded
+        // req.userID = userID
+        // if (decoded) {
+        //     next()
+        // }
     });
 }
 
