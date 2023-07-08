@@ -94,12 +94,13 @@ const Tasks = () => {
                         <Box boxShadow='outline' p='4' rounded='md' bg='white' w={"30%"}>
                             <Input mt={2} placeholder='description' type='text' name="desc" value={desc} onChange={(e) => { setDesc(e.target.value) }} />
                             <Select placeholder='Select option' value={status} onChange={(e) => { setStatus(e.target.value) }}>
-                                <option value='pending'>pending</option>
+                                <option value='pending' >pending</option>
                                 <option value='completed'>completed</option>
                             </Select>
                             <Button mt={2} onClick={handleTask}>Add Task</Button>
                         </Box>
                     </Center>
+
                     <Center mt={"30px"}>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "20px" }}>
                             {tasks.map((task, index) => {
