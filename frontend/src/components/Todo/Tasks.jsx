@@ -107,7 +107,7 @@ const Tasks = () => {
                                 const formattedDate = formatDate(task.date);
                                 return (
                                     <div key={index}>
-                                        <Box maxW='md' borderWidth='2px' borderRadius='lg' overflow='hidden' backgroundColor={"yellow.50"} p={"5px"}>
+                                        <Box maxW='md' borderWidth='2px' borderRadius='lg' overflow='hidden' backgroundColor={"yellow.50"} p={"10px 70px"}>
                                             <Heading as='h2' size='xl' noOfLines={1}>
                                                 {task.desc}
                                             </Heading>
